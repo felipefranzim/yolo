@@ -1,0 +1,7 @@
+torch
+torchvision
+torchaudio
+-f --index-url https://download.pytorch.org/whl/cu130
+
+ultralytics
+nvidia-cudnn
