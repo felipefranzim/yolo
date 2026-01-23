@@ -206,3 +206,11 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+dataset/images/train/*.jpg
+dataset/images/val/*.jpg
+dataset/labels/train/*.txt
+dataset/labels/val/*.txt
+runs/
+runs/train/
+image-tests/

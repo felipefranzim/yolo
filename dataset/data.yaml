@@ -1,6 +1,8 @@
 train: ./images/train
 val: ./images/val
 
-nc: 1  # número de classes
+nc: 3  # número de classes
 names:
-- horse
+- Fingerprint
+- Photo
+- Signature

@@ -21,6 +21,11 @@ This repository provides a comprehensive guide for setting up your environment, 
     # If training freezes after the first epoch and does not complete, it might be due to an incompatibility with the `polars` package and your CPU. If so, uninstall and install the legacy CPU version of `polars`:
     pip uninstall polars
     pip install polars-lts-cpu
+
+    # Or if still does not work and the terminal shows some message like "The following required CPU features were not detected: avx2, fma, bmi1, bmi2, lzcnt, movbe Continuing to use this version of Polars on this processor will likely result in a crash. Install polars[rtcompat] instead of polars to run Polars with better compatibility." try:
+
+    pip uninstall polars
+    pip install "polars[rtcompat]"
     ```
 
     > **Note:** The URL in `--index-url https://download.pytorch.org/whl/cu121` may vary depending on your installed CUDA version. Refer to the [PyTorch documentation](https://pytorch.org/get-started/locally/) to find the appropriate installation for your CUDA version.
@@ -30,7 +35,7 @@ This repository provides a comprehensive guide for setting up your environment, 
 To start training the model, use the following command:
 
     ```bash
-    yolo detect train data=dataset/data.yaml model=yolov8n.pt epochs=100 imgsz=640
+    yolo detect train data=dataset/data.yaml model=yolov8n.pt epochs=100 imgsz=640 workers=0
     ```
 
 ## 🧪 Testing the Model
@@ -42,3 +47,17 @@ To test the trained model, run:
     ```bash
     yolo detect predict model=runs/detect/train/weights/best.pt source=horse_test.jpg
     ```
+
+Or using the ONNX model:
+
+    ```bash
+    yolo detect predict model=runs/detect/train/weights/best.onnx source=horse_test.jpg
+    ```
+
+## Convert to ONNX
+
+If you want to converter the result model to the ONNX format
+
+```bash
+    yolo export model=runs/detect/train/weights/best.pt format=onnx
+```
